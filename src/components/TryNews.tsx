@@ -34,7 +34,7 @@ const TryNews = ({ country, category, key }: Props) => {
   }, [articles, status, totalArticles]);
 
   // תצוגת טעינה
-  if (status === "loading") return <p>Loading...</p>;
+  if (status === "loading") return <div id="loading"></div>;
   // תצוגת שגיאה
   if (status === "failed") return <p>Failed to load news.</p>;
 
