@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState, useAppDispatch } from "../store/store";
+import {  useSelector } from "react-redux";
+import {  RootState, useAppDispatch } from "../store/store";
 import { fetchNews } from "../store/newsSlice";
 
 interface Props {

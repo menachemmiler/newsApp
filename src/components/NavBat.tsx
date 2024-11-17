@@ -10,8 +10,6 @@ interface Props {
 }
 
 const NavBat = ({
-  category,
-  country,
   setCategory,
   setCountry,
   setKey,
