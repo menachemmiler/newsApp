@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../store/store";
+import { AppDispatch, RootState, useAppDispatch } from "../store/store";
 import { fetchNews } from "../store/newsSlice";
 
 interface Props {
@@ -9,11 +9,13 @@ interface Props {
   key: string;
 }
 
+
 const TryNews = ({ country, category, key }: Props) => {
   const { articles, status, totalArticles } = useSelector(
     (state: RootState) => state.news
   );
-  const dispatch = useDispatch<AppDispatch>();
+  // const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();//שימוש מקובל יותר על ידי שימוש במשתנש שכולל את הטייפ
 
   // הפעלת הפעולה fetchNews פעם אחת כשמרכיב הקומפוננטה נטען
   useEffect(() => {
@@ -24,7 +26,7 @@ const TryNews = ({ country, category, key }: Props) => {
         }`
       )
     );
-  }, [dispatch, country, category]); // תלות ב-`dispatch` בלבד
+  }, [country, category]); // תלות ב-`dispatch` בלבד
 
   // הדפס את הנתונים עבור debugging
   useEffect(() => {
@@ -42,7 +44,14 @@ const TryNews = ({ country, category, key }: Props) => {
         <div className="news" key={index}>
           <h2>{article.title}</h2>
           <p>{article.description}</p>
-          <p>{article.content}</p>
+          <p>
+            {article.content}
+            {article.content.includes('...') && (
+              <a href={article.url} target="_blank" rel="noopener noreferrer">
+                קרא עוד
+              </a>
+            )}
+          </p>
           <img src={article.image} alt="news" />
           <p>{article.publishedAt}</p>
         </div>

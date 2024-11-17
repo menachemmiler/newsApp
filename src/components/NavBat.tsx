@@ -1,3 +1,5 @@
+import { useRef } from "react";
+
 interface Props {
   setCategory: (category: string) => void;
   category: string;
@@ -7,7 +9,22 @@ interface Props {
   setKey: (key: string) => void;
 }
 
-const NavBat = ({ category, country, setCategory, setCountry, setKey }: Props) => {
+const NavBat = ({
+  category,
+  country,
+  setCategory,
+  setCountry,
+  setKey,
+}: Props) => {
+  const apiKeyRef = useRef<HTMLInputElement>(null);
+
+  const updateApiKey = () => {
+    if (!apiKeyRef.current?.value) {
+      return;
+    }
+    setKey(apiKeyRef.current.value);
+  };
+
   //
   return (
     <div className="navbar">
@@ -31,6 +48,8 @@ const NavBat = ({ category, country, setCategory, setCountry, setKey }: Props) =
         <option value="us">United States</option>
         <option value="gb">United Kingdom</option>
       </select>
+      <input ref={apiKeyRef} type="text" placeholder="your api key" />
+      <button onClick={updateApiKey}>set api key</button>
     </div>
   );
 };

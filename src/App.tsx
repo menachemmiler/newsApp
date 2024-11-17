@@ -11,7 +11,9 @@ function App() {
   const [category, setCategory] = useState("general");
 
   //to set the api key with state and local storage
-  const [apiKey, setApiKey] = useState("ea4293c6a0d12abb7f161d1889f3bc72");
+  // const [apiKey, setApiKey] = useState("ea4293c6a0d12abb7f161d1889f3bc72");//של שרי
+  const [apiKey, setApiKey] = useState("44768c5b2742189742339551d092fb26");//שלי
+
   return (
     <>
       <NavBat
