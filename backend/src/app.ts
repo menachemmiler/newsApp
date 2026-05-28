@@ -1,35 +1,20 @@
-import express from "express";
+import express, { Application } from "express";
 import cors from "cors";
-import "dotenv/config";
-import usersController from "./controllers/users";
-import adminController from "./controllers/admin";
-import { connectToMongo } from "./config/db";
+import dotenv from "dotenv";
+import newsRoutes from "./routes/newsRoutes";
 
-const PORT = process.env.PORT || 3000;
+// טעינת משתני סביבה מהקובץ .env
+dotenv.config();
 
-import http from "http";
-import { Server } from "socket.io";
+const app: Application = express();
 
-const app = express();
-connectToMongo();
-
-const server = http.createServer(app);
-
-export const io = new Server(server, {
-  cors: {
-    origin: "*", // כתובת הלקוח
-    methods: "*",
-  },
-});
-import "./socket/io";//מייבא את הקובץ של הסוקטים
-
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 
-app.use("/api/users", usersController);
-app.use("/api/admin", adminController);
+// חיבור הראוטר
+app.use("/api/news", newsRoutes);
 
-
-server.listen(PORT, () => {
-  console.log(`Server started, Visit "http://localhost:${PORT}"`);
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`[server]: TS Proxy server is running on port ${PORT}`);
 });

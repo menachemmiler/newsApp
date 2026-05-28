@@ -20,7 +20,7 @@ const TryNews = ({ country, category, apiKey }: Props) => {
   useEffect(() => {
     dispatch(
       fetchNews(
-        `https://gnews.io/api/v4/top-headlines?country=${country}&category=${category}&max=10&apikey=${
+        `http://localhost:5000/api/news?country=${country}&category=${category}&max=10&apikey=${
           apiKey || "ea4293c6a0d12abb7f161d1889f3bc72"
         }`,
       ),
