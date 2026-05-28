@@ -28,7 +28,7 @@ export const fetchNews = createAsyncThunk<NewsState, string>(
     } catch (err: any) {
       return thunkAPI.rejectWithValue(err.message);
     }
-  }
+  },
 );
 
 const newsSlice = createSlice({
