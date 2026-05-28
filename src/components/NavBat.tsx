@@ -5,15 +5,11 @@ interface Props {
   category: string;
   country: string;
   setCountry: (country: string) => void;
-  key: string;
-  setKey: (key: string) => void;
+  apiKey: string;
+  setKey: (apiKey: string) => void;
 }
 
-const NavBat = ({
-  setCategory,
-  setCountry,
-  setKey,
-}: Props) => {
+const NavBat = ({ setCategory, setCountry, setKey }: Props) => {
   const apiKeyRef = useRef<HTMLInputElement>(null);
 
   const updateApiKey = () => {
